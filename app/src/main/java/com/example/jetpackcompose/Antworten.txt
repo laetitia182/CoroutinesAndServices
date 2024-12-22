@@ -1,0 +1,21 @@
+A) Coroutinen ermöglichen einfache, effiziente und lesbare asynchrone Programmierung. Sie verbessern
+ die Leistung, indem sie Threads nicht blockieren, sondern pausieren und fortsetzen können. Durch
+ Dispatcher wie Dispatchers.IO für I/O-intensive Aufgaben wird die Ressourcennutzung optimiert.
+ Coroutinen vermeiden UI-Blockaden und bieten strukturierte Nebenläufigkeit, die Fehlerbehandlung
+ und Abbruch erleichtert.
+
+ B) In Aufgabe 2A) wurde Dispatchers.IO verwendet, da dieser speziell für I/O-intensive
+ Aufgaben optimiert ist. Dadurch wird sichergestellt, dass der Haupt-Thread nicht blockiert wird
+ und die Anwendung flüssig bleibt
+
+ C) 1. Navigations-Apps: Ein Foreground-Service kann genutzt werden, um den Standort kontinuierlich
+ zu verfolgen, selbst wenn die App nicht aktiv ist.
+
+ 2. Daten-Synchronisierung: Background-Services synchronisieren Benutzerdateien oder Kontakte mit
+ einem Server. Beide Fälle erfordern kontinuierliche Aufgaben, die unabhängig von der
+ Benutzerinteraktion laufen müssen.
+
+D) Die Kombination ermöglicht effiziente, asynchrone Verarbeitung, da Coroutinen Ressourcen schonen
+und Fehler strukturiert behandeln. Im Kontext der Wetter-App wird beispielsweise ein Service
+genutzt, um periodisch Wetterdaten zu aktualisieren, während Coroutinen sicherstellen, dass diese
+Operationen asynchron und thread-sicher ablaufen.

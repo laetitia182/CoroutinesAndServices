@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //handlePopupService()      // Todo Uncomment this line
+        handlePopupService()    // call method to initialize and handle the PopupService
 
         setContent {
             val viewModel: WeatherViewModel = viewModel()

@@ -57,10 +57,28 @@ object WeatherApiService {
         }
     }
 
-
-    ////////////////////////////////////
-
-    // TODO: Methode fetchForecast implementieren, um die Wettervorhersage abzurufen.
-
-    ////////////////////////////////////
+    /**
+     * Fetches the weather forecast data for a given city using the OpenWeather API
+     *
+     * @param city The name of the city for which the forecast data should be retrieved
+     * @param apiKey The API key required for authentication with the OpenWeather API
+     * @return An instance of ForecastData containing the forecast information, or null if the request fails
+     */
+    suspend fun fetchForecast(city: String, apiKey: String): ForecastData? {
+        return try {
+            withContext(Dispatchers.IO) { // Use Dispatchers.IO for I/O-bound tasks such as network calls
+                val response = api.fetchForecast(city, apiKey)
+                if (response.isSuccessful) {
+                    response.body() // Return the forecast data if successful
+                } else {
+                    Log.e("WeatherApiService", "Failed to fetch forecast data: ${response.code()}")
+                    null
+                }
+            }
+        } catch (e: Exception) {
+            // Log any exceptions that occur during the request
+            Log.e("WeatherApiService", "Error fetching forecast data: ${e.message}")
+            null
+        }
+    }
 }

@@ -40,14 +40,26 @@ class WeatherViewModel : ViewModel() {
         }
     }
 
+    /***
+     * Fetches the weather forecast data for a specified city asynchronously.
+     * @param city The name of the city for which the forecast data is to be retrieved.
+     * @param apiKey The API key required to authenticate requests to the OpenWeather API.
+     *
+     */
     fun fetchForecastData(city: String, apiKey: String) {
-
-        ////////////////////////////////////
-
-        //Todo
-
-        ////////////////////////////////////
-
+        viewModelScope.launch {
+            try {
+                val forecastResponse = WeatherApiService.fetchForecast(city, apiKey)
+                if (forecastResponse != null) {
+                    _forecast.value = forecastResponse.list
+                    _errorMessage.value = null
+                } else {
+                    _errorMessage.value = "Failed to fetch forecast. Please check your API key or city name."
+                }
+            } catch (e: Exception) {
+                _errorMessage.value = "An error occurred: ${e.localizedMessage}"
+            }
+        }
     }
 
     private fun fetchWeatherIcon(iconId: String) {

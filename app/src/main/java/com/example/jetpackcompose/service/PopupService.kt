@@ -32,20 +32,26 @@ class PopupService : Service() {
         }
     }
 
+    /**
+     * Called when the service is created
+     */
     override fun onCreate() {
         super.onCreate()
+        // create a notification channel for the service
         createNotificationChannel()
-
-
-        ////////////////////////////////////
-
-        //TODO starte den Service hier
-
-        ////////////////////////////////////
-
+        // start the service as a foreground service
+        startForegroundService()
 
         registerUpdateReceiver()
         initializeTimerFromSettings()
+    }
+
+    /**
+     * Starts the service as a foreground service with a persistent notification
+     */
+    private fun startForegroundService() {
+        val notification = getNotification("Popup Service is running") // create a notification using getNotification()
+        startForeground(1, notification) // start the service with a persistent notification
     }
 
     override fun onDestroy() {
